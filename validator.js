@@ -15,7 +15,7 @@ window.onload = function () {
 			this.style.transform = "scale(1.05)"
 		}
 	}
-};
+}
 
 function check() {
 	let message = "";
@@ -31,6 +31,11 @@ function check() {
 	}
 
 	y = document.querySelector("input[name=Y-input]").value.replace(",", ".");
+	if (y[0] === "-") {
+		y = y.substring(0, 8);
+	} else {
+		y = y.substring(0, 7);
+	}
 	if (y === "") {
 		message += "Y не введён\n";
 		checkY = false;
@@ -62,8 +67,8 @@ function check() {
 
 function ask() {
 	if (check()) {
-		jQuery("#resultTable").remove();
-		jQuery.get('answer.php', {
+		$("#resultTable").remove();
+		$.get('answer.php', {
 			"X": encodeURIComponent(x),
 			"Y": encodeURIComponent(y),
 			"R": encodeURIComponent(r),
